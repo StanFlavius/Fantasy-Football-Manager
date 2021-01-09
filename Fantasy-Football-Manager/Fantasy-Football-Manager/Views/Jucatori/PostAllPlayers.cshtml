@@ -1,0 +1,15 @@
+﻿@model Fantasy_Football_Manager.Models.Jucator
+
+<h2>Lista jucatori</h2>
+
+
+@{ 
+        var authorsList = ViewData["jucatori"] as List<Jucator>;
+    }
+
+@foreach (var author in authorsList)
+    {
+    <div class="col-md-4 col-lg-4 col-xs-6 col-sm-4">
+        <p>@author.NumeJucator</p>
+    </div>
+    }

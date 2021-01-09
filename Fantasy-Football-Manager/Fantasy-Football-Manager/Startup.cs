@@ -16,7 +16,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Fantasy_Football_Manager.Models;
 
-
 namespace Fantasy_Football_Manager
 {
     public class Startup
@@ -37,7 +36,7 @@ namespace Fantasy_Football_Manager
             ///services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             ///    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
        // services.AddDefaultIdentity<IdentityUser>()
        .AddEntityFrameworkStores<ApplicationDbContext>()
        .AddDefaultTokenProviders();
@@ -57,10 +56,14 @@ namespace Fantasy_Football_Manager
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
 
+            services.AddScoped<IJucatorRepo, JucatorRepo>();
+
             // using Microsoft.AspNetCore.Identity.UI.Services;
             services.AddSingleton<IEmailSender, EmailSender>();
 
+            services.AddMvc();
             services.AddControllersWithViews();
+            services.AddHttpClient();
             services.AddRazorPages();
         }
 

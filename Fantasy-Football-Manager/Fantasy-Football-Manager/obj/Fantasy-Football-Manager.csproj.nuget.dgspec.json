@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\fantasy-football-manager\\Fantasy-Football-Manager.csproj": {}
+    "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\fantasy-football-manager\\Fantasy-Football-Manager.csproj": {
+    "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\fantasy-football-manager\\Fantasy-Football-Manager.csproj",
+        "projectUniqueName": "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager.csproj",
         "projectName": "Fantasy-Football-Manager",
-        "projectPath": "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\fantasy-football-manager\\Fantasy-Football-Manager.csproj",
+        "projectPath": "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager.csproj",
         "packagesPath": "C:\\Users\\flavi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\fantasy-football-manager\\obj\\",
+        "outputPath": "C:\\Users\\flavi\\OneDrive\\Documents\\GitHub\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\Fantasy-Football-Manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\flavi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
               "version": "[3.1.10, )"
@@ -60,11 +64,11 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Razor": {
+            "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[2.2.5, )"
             },
-            "Microsoft.AspNetCore.Razor.Design": {
+            "Microsoft.AspNetCore.Razor": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
@@ -82,19 +86,23 @@
               "target": "Package",
               "version": "[3.1.10, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.10, )"
             },
-            "Microsoft.NET.Sdk.Razor": {
-              "target": "Package",
-              "version": "[3.1.10, )"
-            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             },
             "Npgsql": {
               "target": "Package",
