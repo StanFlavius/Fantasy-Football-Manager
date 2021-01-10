@@ -53,5 +53,13 @@ namespace Fantasy_Football_Manager.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> UpdateStatistics()
+        {
+
+            await _jucatorRepo.UpdatePlayers("2021-01-04", "2021-01-04");
+
+            return View();
+        }
     }
 }
