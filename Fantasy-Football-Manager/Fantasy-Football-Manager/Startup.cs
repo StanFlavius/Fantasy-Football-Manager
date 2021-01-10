@@ -35,11 +35,14 @@ namespace Fantasy_Football_Manager
                     Configuration.GetConnectionString("BackendConnection")));
             ///services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             ///    .AddEntityFrameworkStores<ApplicationDbContext>();
+            /*services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                 .AddDefaultUI()
+                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                 .AddDefaultTokenProviders();*/
 
             services.AddIdentity<User, IdentityRole>()
-       // services.AddDefaultIdentity<IdentityUser>()
-       .AddEntityFrameworkStores<ApplicationDbContext>()
-       .AddDefaultTokenProviders();
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddRazorPagesOptions(options =>
@@ -54,6 +57,13 @@ namespace Fantasy_Football_Manager
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("readpolicy",
+                    builder => builder.RequireRole("Admin", "User"));
+                options.AddPolicy("writepolicy",
+                    builder => builder.RequireRole("Admin"));
             });
 
             services.AddScoped<IJucatorRepo, JucatorRepo>();

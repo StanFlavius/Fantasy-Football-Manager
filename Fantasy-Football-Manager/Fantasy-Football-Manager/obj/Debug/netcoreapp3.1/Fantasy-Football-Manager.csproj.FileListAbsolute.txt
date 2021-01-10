@@ -237,3 +237,5 @@ C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Footba
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Fantasy-Football-Manager.csprojAssemblyReference.cache
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori\PlayersDB.cshtml.g.cs
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori\UpdateStatistics.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Role\Create.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Role\Index.cshtml.g.cs
