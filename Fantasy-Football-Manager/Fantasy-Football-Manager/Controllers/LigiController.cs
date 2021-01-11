@@ -2,22 +2,53 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Fantasy_Football_Manager.Data;
 using Fantasy_Football_Manager.Models;
 using Fantasy_Football_Manager.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Web;
+
 
 namespace Fantasy_Football_Manager.Controllers
 {
     public class LigiController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILigaRepo _ligaRepo;
 
-        public LigiController(ApplicationDbContext applicationDbContext)
+        public LigiController(ApplicationDbContext applicationDbContext, ILigaRepo ligaRepo)
         {
             _context = applicationDbContext;
+            _ligaRepo = ligaRepo;
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Create(Liga liga)
+        {
+            if (ModelState.IsValid)
+            {
+                _ligaRepo.AddLeague(liga);  
+            }
+
+            return View(liga);
+        }
+
+        public IActionResult GetLeaguesNoUser()
+        {
+            List<Liga> ligi = _ligaRepo.GetLeaguesNotCurrUser().ToList();
+
+            ViewData["Ligi"] = ligi;
+
+            return View();
+        }
     }
 }

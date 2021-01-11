@@ -1,0 +1,33 @@
+﻿@model Fantasy_Football_Manager.Models.Liga
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Liga</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.NumeLiga, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.NumeLiga, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.NrMaxUseri, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.NrMaxUseri, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+}

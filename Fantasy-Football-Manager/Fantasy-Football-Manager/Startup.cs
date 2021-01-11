@@ -67,6 +67,7 @@ namespace Fantasy_Football_Manager
             });
 
             services.AddScoped<IJucatorRepo, JucatorRepo>();
+            services.AddScoped<ILigaRepo, LigaRepo>();
 
             // using Microsoft.AspNetCore.Identity.UI.Services;
             services.AddSingleton<IEmailSender, EmailSender>();
@@ -75,6 +76,8 @@ namespace Fantasy_Football_Manager
             services.AddControllersWithViews();
             services.AddHttpClient();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

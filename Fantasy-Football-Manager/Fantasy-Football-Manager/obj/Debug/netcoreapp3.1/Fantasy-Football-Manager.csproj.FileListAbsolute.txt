@@ -245,3 +245,4 @@ C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Footba
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori\EditPosition.cshtml.g.cs
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori\DisplayAllStats.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Ligi\Create.cshtml.g.cs
