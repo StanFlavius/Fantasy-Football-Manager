@@ -406,5 +406,35 @@ namespace Fantasy_Football_Manager.Data
             AddPlayerExistent(newJucator, statisticiJucator);
             _applicationDbContext.SaveChanges();
         }
+
+        public List<PlayerAllInfoDTO> GetAllInfo()
+        {
+            Console.WriteLine("IN FUNCTIE");
+            List<PlayerAllInfoDTO> playerAllInfos = new List<PlayerAllInfoDTO>();
+
+            List<Jucator> jucatori = _applicationDbContext.Jucatori.ToList();
+
+            foreach(Jucator jucator in jucatori)
+            {
+                Console.WriteLine(jucator.JucatorId);
+                PlayerAllInfoDTO playerAllInfo = new PlayerAllInfoDTO();
+                playerAllInfo.JucatorId = jucator.JucatorId;
+                playerAllInfo.NumeJucator = jucator.NumeJucator;
+                playerAllInfo.PrenumeJucator = jucator.PrenumeJucator;
+                playerAllInfo.EchipaFotbal = jucator.EchipaFotbal;
+                playerAllInfo.PozitieJucator = jucator.PozitieJucator;
+
+                StatisticiJucator statisticiJucator = new StatisticiJucator();
+                statisticiJucator = GetStatisticiJucator(jucator.JucatorId);
+                playerAllInfo.NrAssists = statisticiJucator.NrAssists;
+                playerAllInfo.NrCleansheets = statisticiJucator.NrCleansheets;
+                playerAllInfo.NrGoluri = statisticiJucator.NrGoluri;
+                playerAllInfo.NrTotalPuncte = statisticiJucator.NrTotalPuncte;
+
+                playerAllInfos.Add(playerAllInfo);
+            }
+            return playerAllInfos;
+
+        }
     }
 }

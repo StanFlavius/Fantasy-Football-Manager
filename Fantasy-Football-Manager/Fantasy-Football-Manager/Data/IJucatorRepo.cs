@@ -33,5 +33,7 @@ namespace Fantasy_Football_Manager.Data
         public void EditTeam(EditPlayerTeamDTO editPlayerTeamDTO);
 
         public void EditPosition(EditPlayerPositionDTO editPlayerPositionDTO);
+
+        public List<PlayerAllInfoDTO> GetAllInfo();
     }
 }

@@ -122,5 +122,19 @@ namespace Fantasy_Football_Manager.Controllers
 
             return View(editPlayerPosition);
         }
+
+        public IActionResult DisplayAllStats()
+        {
+            Console.WriteLine("INCEPUT");
+            List<PlayerAllInfoDTO> playerInfos = new List<PlayerAllInfoDTO>();
+
+            Console.WriteLine("INAINTE DATA");
+            playerInfos = _jucatorRepo.GetAllInfo();
+
+            Console.WriteLine("DUPA DATA");
+            ViewData["playersInfos"] = playerInfos;
+
+            return View();
+        }
     }
 }
