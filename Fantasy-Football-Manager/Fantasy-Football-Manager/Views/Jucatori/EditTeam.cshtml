@@ -1,0 +1,54 @@
+﻿@model Fantasy_Football_Manager.ViewModels.EditPlayerTeamDTO
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Edit Team</h1>
+
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.NumeJucator, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.NumeJucator, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.PrenumeJucator, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.PrenumeJucator, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.PozitieJucator, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.PozitieJucator, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.EchipaFotbal, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.EchipaFotbal, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.EchipaFotbalNoua, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.EchipaFotbalNoua, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            <input type="submit" value="Actualizare" class="btn btn-primary" />
+        </div>
+    </div>
+
+</div>
+}

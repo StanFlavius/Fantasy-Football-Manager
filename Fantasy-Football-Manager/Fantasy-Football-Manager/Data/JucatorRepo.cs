@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Fantasy_Football_Manager.Models;
+using Fantasy_Football_Manager.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -28,15 +29,7 @@ namespace Fantasy_Football_Manager.Data
             Console.WriteLine("IN FUNCTIE" + " " + name + "." + surname);
             var jucator = _applicationDbContext.Jucatori
                             .FirstOrDefault<Jucator>(j => j.NumeJucator == name && j.PrenumeJucator.Substring(0,1) == surname);
-            
-            /*var query = from j in _applicationDbContext.Jucatori
-                           where j.NumeJucator == name && j.PrenumeJucator[0] == surname
-                           select j;*/
-
-            //int jucatorId = jucator.JucatorId;
-
-            //StatisticiJucator myStatisticiJucator = _applicationDbContext.StatisticiJucatori.FirstOrDefault(s => s.StatisticiJucatorId == jucatorId);
-            //var jucator = query.FirstOrDefault<Jucator>();
+           
             return jucator;
         }
 
@@ -64,9 +57,9 @@ namespace Fantasy_Football_Manager.Data
                 return 4;
             if (eventMatch == "assist" && position == "Atacant")
                 return 3;
-            if (eventMatch == "cleansheet" && (position == "portar" || position == "fundas"))
+            if (eventMatch == "cleansheet" && (position == "Portar" || position == "Fundas"))
                 return 6;
-            if (eventMatch == "cleansheet" && (position == "mijlocas" || position == "atacant"))
+            if (eventMatch == "cleansheet" && (position == "Mijlocas" || position == "Atacant"))
                 return 2;
             if (eventMatch == "yellow card")
                 return -2;
@@ -112,20 +105,36 @@ namespace Fantasy_Football_Manager.Data
 
             string points = nrPoints.ToString();
             Console.WriteLine("AFARA" + jucator.NumeJucator + " " + jucator.PrenumeJucator + " " + points);
-            Console.WriteLine(" ");
-            /*statisticiJucator.NrTotalPuncte += nrPoints;
+            
+            StatisticiJucator newStatisticiJucator = new StatisticiJucator();
+            int id = statisticiJucator.StatisticiJucatorId;
+            newStatisticiJucator.StatisticiJucatorId = id;
+            int nrPuncte = statisticiJucator.NrTotalPuncte;
+            newStatisticiJucator.NrTotalPuncte = nrPuncte + nrPoints;
+            newStatisticiJucator.NrAssists = statisticiJucator.NrAssists;
+            newStatisticiJucator.NrGoluri = statisticiJucator.NrGoluri;
+            newStatisticiJucator.NrCleansheets = statisticiJucator.NrCleansheets;
             if (data == "goal")
             {
-                statisticiJucator.NrGoluri++;
+                int nrGoluri = statisticiJucator.NrGoluri; 
+                newStatisticiJucator.NrGoluri = nrGoluri + 1;
             }
             if (data == "assist")
             {
-                statisticiJucator.NrAssists++;
+                int nrAssisturi = statisticiJucator.NrAssists;
+                newStatisticiJucator.NrAssists = nrAssisturi + 1;
             }
             if (data == "cleansheet")
             {
-                statisticiJucator.NrCleansheets++;
-            }*/
+                int nrCS = statisticiJucator.NrCleansheets;
+                newStatisticiJucator.NrCleansheets = nrCS + 1;
+            }
+
+            _applicationDbContext.StatisticiJucatori.Remove(statisticiJucator);
+            _applicationDbContext.Jucatori.Add(jucator);
+
+            _applicationDbContext.StatisticiJucatori.Add(newStatisticiJucator);
+            _applicationDbContext.SaveChanges();
         }
 
         public async Task<List<Jucator>> GetAllPlayersAsync()
@@ -300,6 +309,102 @@ namespace Fantasy_Football_Manager.Data
                     }
                 }
             }
+        }
+
+        public int GetAvailableId()
+        {
+            int id = (
+                        from j in _applicationDbContext.Jucatori
+                        orderby j.JucatorId descending
+                        select j.JucatorId).FirstOrDefault();
+            return id;
+        }
+
+        public void AddPlayer(Jucator jucator, StatisticiJucator  statisticiJucator)
+        {
+            int newId = GetAvailableId();
+            jucator.JucatorId = newId + 1;
+            jucator.StatisticiJucatorId = newId + 1;
+
+            statisticiJucator.StatisticiJucatorId = jucator.JucatorId;
+            _applicationDbContext.StatisticiJucatori.Add(statisticiJucator);
+            _applicationDbContext.SaveChanges();
+            _applicationDbContext.Jucatori.Add(jucator);
+            _applicationDbContext.SaveChanges();
+        }
+
+        public void AddPlayerExistent(Jucator jucator, StatisticiJucator statisticiJucator)
+        {
+            _applicationDbContext.StatisticiJucatori.Add(statisticiJucator);
+            _applicationDbContext.Jucatori.Add(jucator);
+            _applicationDbContext.SaveChanges();
+        }
+
+        public Jucator GetJucatorByFullData(string name, string surname, string position, string team)
+        {
+            var jucator = _applicationDbContext.Jucatori
+                            .FirstOrDefault<Jucator>(j => j.NumeJucator == name && j.PrenumeJucator == surname
+                                                      && j.PozitieJucator == position && j.EchipaFotbal == team);
+
+            return jucator;
+        }
+
+        public void DeletePlayer(Jucator jucator)
+        {
+            //Jucator jucator = GetJucatorByFullData(name, surname, position, team);
+            if (jucator == null)
+                throw new ArgumentNullException();
+
+            Jucator myJucator = GetJucatorByFullData(jucator.NumeJucator, jucator.PrenumeJucator, jucator.PozitieJucator, jucator.EchipaFotbal);
+
+            StatisticiJucator statisticiJucator = GetStatisticiJucator(myJucator.StatisticiJucatorId);
+            _applicationDbContext.Jucatori.Remove(myJucator);
+
+            _applicationDbContext.StatisticiJucatori.Remove(statisticiJucator);
+
+            _applicationDbContext.SaveChanges();
+        }
+
+        public StatisticiJucator GetStatisticiJucator(int sJucatorId)
+        {
+            var sJucator = _applicationDbContext.StatisticiJucatori
+                            .FirstOrDefault<StatisticiJucator>(sj => sj.StatisticiJucatorId == sJucatorId);
+
+            return sJucator;
+        }
+
+        public void EditTeam(EditPlayerTeamDTO editPlayerTeamDTO)
+        {
+            Jucator jucator = GetJucatorByFullData(editPlayerTeamDTO.NumeJucator, editPlayerTeamDTO.PrenumeJucator, editPlayerTeamDTO.PozitieJucator, editPlayerTeamDTO.EchipaFotbal);
+            StatisticiJucator statisticiJucator = GetStatisticiJucator(jucator.StatisticiJucatorId);
+
+            Jucator newJucator = new Jucator();
+            newJucator.JucatorId = jucator.JucatorId;
+            newJucator.NumeJucator = jucator.NumeJucator;
+            newJucator.PrenumeJucator = jucator.PrenumeJucator;
+            newJucator.PozitieJucator = jucator.PozitieJucator;
+            newJucator.StatisticiJucatorId = jucator.StatisticiJucatorId;
+            newJucator.EchipaFotbal = editPlayerTeamDTO.EchipaFotbalNoua;
+            DeletePlayer(jucator);
+            AddPlayerExistent(newJucator, statisticiJucator);
+            _applicationDbContext.SaveChanges();
+        }
+
+        public void EditPosition(EditPlayerPositionDTO editPlayerPositionDTO)
+        {
+            Jucator jucator = GetJucatorByFullData(editPlayerPositionDTO.NumeJucator, editPlayerPositionDTO.PrenumeJucator, editPlayerPositionDTO.PozitieJucator, editPlayerPositionDTO.EchipaFotbal);
+            StatisticiJucator statisticiJucator = GetStatisticiJucator(jucator.StatisticiJucatorId);
+
+            Jucator newJucator = new Jucator();
+            newJucator.JucatorId = jucator.JucatorId;
+            newJucator.NumeJucator = jucator.NumeJucator;
+            newJucator.PrenumeJucator = jucator.PrenumeJucator;
+            newJucator.PozitieJucator = editPlayerPositionDTO.PozitieJucatorNoua;
+            newJucator.StatisticiJucatorId = jucator.StatisticiJucatorId;
+            newJucator.EchipaFotbal = jucator.EchipaFotbal;
+            DeletePlayer(jucator);
+            AddPlayerExistent(newJucator, statisticiJucator);
+            _applicationDbContext.SaveChanges();
         }
     }
 }
