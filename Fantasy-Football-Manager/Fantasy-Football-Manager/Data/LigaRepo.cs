@@ -61,52 +61,117 @@ namespace Fantasy_Football_Manager.Data
 
         public int GetNrUsers(int ligaId)
         {
-
+            var userLigi = _applicationDbContext.UsersLigi.Where(x => x.LigaId == ligaId);
+            return userLigi.ToList().Count;
         }
 
         public List<LeagueStats> GetLeaguesNotCurrUser()
         {
             string userName = _httpContextAccessor.HttpContext.User.Identity.Name;
+            
             User user = GetUser(userName);
-
-            //List<Liga> ligi = new List<Liga>();
+            Console.WriteLine(user.Id);
             List<LeagueStats> leagueStats = new List<LeagueStats>();
+
+            List<Liga> toateLigi = _applicationDbContext.Ligi.ToList();
+            List<int> cuLigiIds = new List<int>();
 
             List<UserLiga> usersLigi = _applicationDbContext.UsersLigi.ToList();
 
-            foreach(UserLiga userLiga in usersLigi)
+
+            foreach (UserLiga userLiga in usersLigi)
             {
-                if (userLiga.UserId != user.Id)
+                if(userLiga.UserId == user.Id)
                 {
-                    Liga liga = _applicationDbContext.Ligi.FirstOrDefault(l => l.LigaId == userLiga.LigaId);
-                    LeagueStats leagueS = new LeagueStats();
-                    leagueS.LigaId = liga.LigaId;
-                    leagueS.NrCurrUseri = 
-                    ligi.Add(liga);
+                    cuLigiIds.Add(userLiga.LigaId);
                 }
             }
 
-            return ligi;
+            foreach(Liga liga1 in toateLigi)
+            {
+                int currId = liga1.LigaId;
+                bool p = true;
+                foreach(int ligaId2 in cuLigiIds)
+                {
+                    if (currId == ligaId2)
+                    {
+                        p = false;
+                    }
+                }
+
+                if (p == true)
+                {
+                    Liga liga = _applicationDbContext.Ligi.FirstOrDefault(l => l.LigaId == currId);
+                    LeagueStats leagueS = new LeagueStats();
+                    leagueS.LigaId = liga.LigaId;
+                    leagueS.NumeLiga = liga.NumeLiga;
+                    leagueS.NrCurrUseri = GetNrUsers(liga.LigaId);
+                    leagueS.NrMaxUseri = liga.NrMaxUseri;
+                    leagueStats.Add(leagueS);
+                }
+
+            }
+
+            return leagueStats;
         }
 
-        public List<Liga> GetLeaguesWithCurrUser()
+        public List<LeagueStats> GetLeaguesWithCurrUser()
         {
             string userName = _httpContextAccessor.HttpContext.User.Identity.Name;
-            User user = GetUser(userName);
 
-            List<Liga> ligi = new List<Liga>();
+            User user = GetUser(userName);
+            Console.WriteLine(user.Id);
+            List<LeagueStats> leagueStats = new List<LeagueStats>();
+
+            List<Liga> toateLigi = _applicationDbContext.Ligi.ToList();
+            List<int> cuLigiIds = new List<int>();
+
             List<UserLiga> usersLigi = _applicationDbContext.UsersLigi.ToList();
+
 
             foreach (UserLiga userLiga in usersLigi)
             {
                 if (userLiga.UserId == user.Id)
                 {
-                    Liga liga = _applicationDbContext.Ligi.FirstOrDefault(l => l.LigaId == userLiga.LigaId);
-                    ligi.Add(liga);
+                    cuLigiIds.Add(userLiga.LigaId);
                 }
             }
 
-            return ligi;
+            foreach (Liga liga1 in toateLigi)
+            {
+                int currId = liga1.LigaId;
+                bool p = true;
+                foreach (int ligaId2 in cuLigiIds)
+                {
+                    if (currId == ligaId2)
+                    {
+                        p = false;
+                    }
+                }
+
+                if (p == false)
+                {
+                    Liga liga = _applicationDbContext.Ligi.FirstOrDefault(l => l.LigaId == currId);
+                    LeagueStats leagueS = new LeagueStats();
+                    leagueS.LigaId = liga.LigaId;
+                    leagueS.NumeLiga = liga.NumeLiga;
+                    leagueS.NrCurrUseri = GetNrUsers(liga.LigaId);
+                    leagueS.NrMaxUseri = liga.NrMaxUseri;
+                    leagueStats.Add(leagueS);
+                }
+
+            }
+
+            return leagueStats;
+        }
+
+        public void AddNewUser(int IdLiga)
+        {
+            string userName = _httpContextAccessor.HttpContext.User.Identity.Name;
+            User user = GetUser(userName);
+
+            _applicationDbContext.UsersLigi.Add(new UserLiga { UserId = user.Id, LigaId = IdLiga });
+            _applicationDbContext.SaveChanges();
         }
     }
 }

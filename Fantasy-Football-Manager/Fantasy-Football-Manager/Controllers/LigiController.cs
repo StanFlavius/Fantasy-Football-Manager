@@ -10,6 +10,7 @@ using Fantasy_Football_Manager.Models;
 using Fantasy_Football_Manager.ViewModels;
 using System.Net.Http;
 using System.Web;
+using System.Data;
 
 
 namespace Fantasy_Football_Manager.Controllers
@@ -44,11 +45,27 @@ namespace Fantasy_Football_Manager.Controllers
 
         public IActionResult GetLeaguesNoUser()
         {
-            List<Liga> ligi = _ligaRepo.GetLeaguesNotCurrUser().ToList();
+            List<LeagueStats> ligi = _ligaRepo.GetLeaguesNotCurrUser().ToList();
 
             ViewData["Ligi"] = ligi;
 
             return View();
+        }
+
+        public IActionResult GetLeaguesWithUser()
+        {
+            List<LeagueStats> ligi = _ligaRepo.GetLeaguesWithCurrUser().ToList();
+
+            ViewData["Ligi"] = ligi;
+
+            return View();
+        }
+
+        public IActionResult JoinLeague(int? id)
+        {
+            //Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            _ligaRepo.AddNewUser((int)id);
+            return RedirectToAction("CreateTeam", "Echipe", new { idLiga = (int)id});
         }
     }
 }

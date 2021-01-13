@@ -1,0 +1,90 @@
+﻿@model Fantasy_Football_Manager.ViewModels.CreateEchipa
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.NumeEchipa, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.NumeEchipa, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Portar1" class="control-label">  </label>
+        <select asp-for="Portar1" class="control-form" asp-items="ViewBag.Portar1"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Portar2" class="control-label">  </label>
+        <select asp-for="Portar2" class="control-form" asp-items="ViewBag.Portar2"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Fundas1" class="control-label">  </label>
+        <select asp-for="Fundas1" class="control-form" asp-items="ViewBag.Fundas1"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Fundas2" class="control-label">  </label>
+        <select asp-for="Fundas2" class="control-form" asp-items="ViewBag.Fundas2"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Fundas3" class="control-label">  </label>
+        <select asp-for="Fundas3" class="control-form" asp-items="ViewBag.Fundas3"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Fundas4" class="control-label">  </label>
+        <select asp-for="Fundas4" class="control-form" asp-items="ViewBag.Fundas4"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Fundas5" class="control-label">  </label>
+        <select asp-for="Fundas5" class="control-form" asp-items="ViewBag.Fundas5"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mijlocas1" class="control-label">  </label>
+        <select asp-for="Mijlocas1" class="control-form" asp-items="ViewBag.Mijlocas1"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mijlocas2" class="control-label">  </label>
+        <select asp-for="Mijlocas2" class="control-form" asp-items="ViewBag.Mijlocas2"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mijlocas3" class="control-label">  </label>
+        <select asp-for="Mijlocas3" class="control-form" asp-items="ViewBag.Mijlocas3"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mijlocas4" class="control-label">  </label>
+        <select asp-for="Mijlocas4" class="control-form" asp-items="ViewBag.Mijlocas4"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mijlocas5" class="control-label">  </label>
+        <select asp-for="Mijlocas5" class="control-form" asp-items="ViewBag.Mijlocas5"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Atacant1" class="control-label">  </label>
+        <select asp-for="Atacant1" class="control-form" asp-items="ViewBag.Atacant1"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Atacant2" class="control-label">  </label>
+        <select asp-for="Atacant2" class="control-form" asp-items="ViewBag.Atacant2"> </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Atacant3" class="control-label">  </label>
+        <select asp-for="Atacant3" class="control-form" asp-items="ViewBag.Atacant3"> </select>
+    </div>
+    @{
+        <input type="hidden" asp-for="LigaId" value="@ViewBag.idLiga">
+    }
+
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </div>
+
+</div>
+    }

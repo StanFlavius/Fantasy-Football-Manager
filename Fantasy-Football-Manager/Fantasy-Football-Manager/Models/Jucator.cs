@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fantasy_Football_Manager.Models
 {
@@ -17,6 +18,9 @@ namespace Fantasy_Football_Manager.Models
 
         [Required]
         public string PrenumeJucator { get; set; }
+
+        [NotMapped]
+        public string Nume { get { return PrenumeJucator + " " + NumeJucator; } }
 
         [Required]
         public string PozitieJucator { get; set; }

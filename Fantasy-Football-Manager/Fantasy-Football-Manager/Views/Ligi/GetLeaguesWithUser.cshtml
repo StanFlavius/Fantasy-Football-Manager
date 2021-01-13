@@ -22,10 +22,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.NrMaxUseri)
             </th>
-            <th>
-                
             </th>
-
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -45,9 +43,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NrMaxUseri)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Join", "JoinLeague", "Ligi", new { id = item.LigaId })
                     </td>
                 </tr>
             }

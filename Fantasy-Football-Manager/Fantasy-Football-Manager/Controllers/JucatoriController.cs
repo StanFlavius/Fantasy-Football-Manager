@@ -129,7 +129,7 @@ namespace Fantasy_Football_Manager.Controllers
             List<PlayerAllInfoDTO> playerInfos = new List<PlayerAllInfoDTO>();
 
             Console.WriteLine("INAINTE DATA");
-            playerInfos = _jucatorRepo.GetAllInfo();
+            playerInfos = _jucatorRepo.GetAllInfo().ToList();
 
             Console.WriteLine("DUPA DATA");
             ViewData["playersInfos"] = playerInfos;

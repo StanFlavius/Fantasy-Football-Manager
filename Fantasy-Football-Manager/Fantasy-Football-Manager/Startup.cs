@@ -68,6 +68,7 @@ namespace Fantasy_Football_Manager
 
             services.AddScoped<IJucatorRepo, JucatorRepo>();
             services.AddScoped<ILigaRepo, LigaRepo>();
+            services.AddScoped<IEchipaRepo, EchipaRepo>();
 
             // using Microsoft.AspNetCore.Identity.UI.Services;
             services.AddSingleton<IEmailSender, EmailSender>();
