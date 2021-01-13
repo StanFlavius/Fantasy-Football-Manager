@@ -67,5 +67,12 @@ namespace Fantasy_Football_Manager.Controllers
             _ligaRepo.AddNewUser((int)id);
             return RedirectToAction("CreateTeam", "Echipe", new { idLiga = (int)id});
         }
+
+        public IActionResult GetLeaderboard(int? id)
+        {
+            List<TeamLeaderboard> teams = _ligaRepo.GetLeaderboard((int)id);
+            ViewData["teams"] = teams;
+            return View();
+        }
     }
 }

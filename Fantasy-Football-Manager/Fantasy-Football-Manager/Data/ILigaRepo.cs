@@ -17,5 +17,7 @@ namespace Fantasy_Football_Manager.Data
         public List<LeagueStats> GetLeaguesWithCurrUser();
         public int GetNrUsers(int ligaId);
         public void AddNewUser(int IdLiga);
+        public int GetNrTotalPuncte(List<int> jucatoriIds);
+        public List<TeamLeaderboard> GetLeaderboard(int idLiga);
     }
 }

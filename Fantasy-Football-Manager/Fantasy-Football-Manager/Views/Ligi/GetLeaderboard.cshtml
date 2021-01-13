@@ -1,4 +1,4 @@
-﻿@model Fantasy_Football_Manager.ViewModels.LeagueStats
+﻿@model Fantasy_Football_Manager.ViewModels.TeamLeaderboard
 
 @{
     ViewData["Title"] = "Index";
@@ -11,32 +11,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NumeLiga)
+                @Html.DisplayNameFor(model => model.NumeUser)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NrCurrUseri)
+                @Html.DisplayNameFor(model => model.NumeEchipa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NrMaxUseri)
+                @Html.DisplayNameFor(model => model.NrTotalPuncte)
             </th>
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-        @{ var playersInfos = ViewData["Ligi"] as List<Fantasy_Football_Manager.ViewModels.LeagueStats>;
+        @{ var playersInfos = ViewData["teams"] as List<Fantasy_Football_Manager.ViewModels.TeamLeaderboard>;
 
             foreach (var item in playersInfos)
             {
                 <tr>
                     <td>
-                        @Html.ActionLink("Nume Liga","GetLeaderboard", "Ligi", new { id = item.LigaId })
+                        @Html.DisplayFor(modelItem => item.NumeUser)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NrCurrUseri)
+                        @Html.ActionLink("Nume Liga", "GetTeam", "Echipe", new { id = item.EchipaId })
+                        @Html.DisplayFor(modelItem => item.NumeEchipa)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NrMaxUseri)
+                        @Html.DisplayFor(modelItem => item.NrTotalPuncte)
                     </td>
                 </tr>
             }

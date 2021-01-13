@@ -13,9 +13,9 @@ namespace Fantasy_Football_Manager.Data
         public User GetUser(string userName);
         public int GetAvailableId();
         public int GetNrTotalPuncte(List<Jucator> jucatori);
-        public void AddTeam(string numeEchipa, List<Jucator> jucatori, int ligaId);
+        public void AddTeam(CreateEchipa createEchipa);
         public List<PlayerAllInfoDTO> GetTeamsWithPlayers(string userId, int ligaId);
         public List<Jucator> GetJucatori(string pozitie);
-
+        public List<PlayerAllInfoDTO> GetPlayersByTeam(int echipaId);
     }
 }

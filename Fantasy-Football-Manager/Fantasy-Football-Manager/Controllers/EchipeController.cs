@@ -59,9 +59,18 @@ namespace Fantasy_Football_Manager.Controllers
             Console.WriteLine(createEchipa.LigaId);
             if (ModelState.IsValid)
             {
-                //_echipaRepo.AddTeam(createEchipa);
+                _echipaRepo.AddTeam(createEchipa);
             }
             return RedirectToAction("GetLeaguesWithUser","Ligi");
+        }
+
+        public IActionResult GetTeam(int? id)
+        {
+            List<PlayerAllInfoDTO> jucatori = _echipaRepo.GetPlayersByTeam((int)id);
+
+            ViewData["jucatori"] = jucatori;
+
+            return View();
         }
     }
 }

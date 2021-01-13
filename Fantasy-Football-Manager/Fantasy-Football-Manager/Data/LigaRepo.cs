@@ -12,11 +12,13 @@ namespace Fantasy_Football_Manager.Data
     {
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IEchipaRepo _echipaRepo;
 
-        public LigaRepo (ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
+        public LigaRepo (ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor, IEchipaRepo echipaRepo)
         {
             _applicationDbContext = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
+            _echipaRepo = echipaRepo;
         }
 
         public bool SaveChanges()
@@ -172,6 +174,54 @@ namespace Fantasy_Football_Manager.Data
 
             _applicationDbContext.UsersLigi.Add(new UserLiga { UserId = user.Id, LigaId = IdLiga });
             _applicationDbContext.SaveChanges();
+        }
+
+        public int GetNrTotalPuncte(List<int> jucatoriIds)
+        {
+            int nrTotal = 0;
+            foreach (int jucatorId in jucatoriIds)
+            {
+                StatisticiJucator statisticiJucator = _applicationDbContext.StatisticiJucatori.Find(jucatorId);
+                nrTotal += statisticiJucator.NrTotalPuncte;
+            }
+
+            return nrTotal;
+        }
+
+        public List<TeamLeaderboard> GetLeaderboard(int idLiga)
+        {
+            var echipeLiga = (
+                                           from e in _applicationDbContext.Echipe
+                                           where e.LigaId == idLiga
+                                           select e
+                                      );
+
+            List<TeamLeaderboard> teams = new List<TeamLeaderboard>();
+
+            foreach(Echipa e in echipeLiga.ToList())
+            {
+                TeamLeaderboard team = new TeamLeaderboard();
+                team.EchipaId = e.EchipaId;
+                team.LigaId = idLiga;
+                team.NumeEchipa = e.NumeEchipa;
+                team.NumeUser = _applicationDbContext.Users.Find(e.UserId).UserName;
+                List<int> jucatoriIds = (
+                                            from ej in _applicationDbContext.EchipeJucatori
+                                            where ej.EchipaId == e.EchipaId
+                                            select ej.JucatorId
+                                        ).ToList();
+
+                team.NrTotalPuncte = GetNrTotalPuncte(jucatoriIds);
+
+                teams.Add(team);
+            }
+
+            teams = teams.
+                    Where(x => x != null)
+                    .OrderByDescending(x => x.NrTotalPuncte)
+                    .ToList();
+
+            return teams;
         }
     }
 }

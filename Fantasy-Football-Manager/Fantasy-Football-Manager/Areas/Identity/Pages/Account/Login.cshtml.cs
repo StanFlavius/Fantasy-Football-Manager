@@ -83,8 +83,18 @@ namespace Fantasy_Football_Manager.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+
+                    if (currentUser.IsInRole("User"))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToAction("GetLeaguesNoUser", "Ligi");
+                    }
+                    else
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToAction("Create", "Jucatori");
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

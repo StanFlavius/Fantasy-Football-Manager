@@ -1,0 +1,81 @@
+﻿@model Fantasy_Football_Manager.ViewModels.PlayerAllInfoDTO
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h2>Players Table</h2>
+<table id="myTable" class="table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeJucator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrenumeJucator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PozitieJucator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EchipaFotbal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrGoluri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrAssists)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrCleansheets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrTotalPuncte)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var jucatori = ViewData["jucatori"] as List<Fantasy_Football_Manager.ViewModels.PlayerAllInfoDTO>;
+
+            foreach (var item in jucatori)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeJucator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrenumeJucator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PozitieJucator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EchipaFotbal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrGoluri)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrAssists)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrCleansheets)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrTotalPuncte)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+			$(document).ready(function () {
+				$('#myTable').DataTable();//myTable is the id of the table to be displayed as dataTable
+			});
+    </script>
+}
