@@ -151,9 +151,8 @@ namespace Fantasy_Football_Manager.Views
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var jucator = await _context.Jucatori.FindAsync(id);
-            _context.Jucatori.Remove(jucator);
-            await _context.SaveChangesAsync();
+            Jucator jucator = _context.Jucatori.Find(id);
+            _jucatorRepo.DeletePlayer(jucator);
             return RedirectToAction(nameof(Index));
         }
 

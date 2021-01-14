@@ -56,8 +56,6 @@ namespace Fantasy_Football_Manager.Controllers
 
          public async Task<IActionResult> UpdateStatistics(string data)
          {
-            //"2021-01-04"
-            //Console.WriteLine(data);
             await _jucatorRepo.UpdatePlayers(data, data);
             return RedirectToAction("Index", "Jucatori2");
          }

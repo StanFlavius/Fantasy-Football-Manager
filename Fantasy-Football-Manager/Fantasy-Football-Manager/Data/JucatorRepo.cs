@@ -361,6 +361,7 @@ namespace Fantasy_Football_Manager.Data
             StatisticiJucator statisticiJucator = GetStatisticiJucator(myJucator.StatisticiJucatorId);
             _applicationDbContext.Jucatori.Remove(myJucator);
 
+            Console.WriteLine(statisticiJucator.StatisticiJucatorId);
             _applicationDbContext.StatisticiJucatori.Remove(statisticiJucator);
 
             _applicationDbContext.SaveChanges();
