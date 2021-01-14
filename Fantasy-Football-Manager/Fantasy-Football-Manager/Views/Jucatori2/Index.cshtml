@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Fantasy_Football_Manager.Models.Jucator>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fantasy Football Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<p>
+    <a asp-action="Create" style="color:black">Adauga Jucator</a>
+</p>
+<table id="myTable" class="table-striped table-bordered">
+    <thead style="background-color:lightgrey !important">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeJucator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrenumeJucator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PozitieJucator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EchipaFotbal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeJucator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrenumeJucator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PozitieJucator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EchipaFotbal)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.JucatorId" style="color:black">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.JucatorId" style="color:black">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+			$(document).ready(function () {
+				$('#myTable').DataTable();//myTable is the id of the table to be displayed as dataTable
+			});
+    </script>
+}

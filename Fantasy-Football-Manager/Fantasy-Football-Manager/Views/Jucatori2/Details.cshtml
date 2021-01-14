@@ -1,0 +1,48 @@
+﻿@model Fantasy_Football_Manager.Models.Jucator
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Jucator</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeJucator)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeJucator)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrenumeJucator)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrenumeJucator)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PozitieJucator)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PozitieJucator)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EchipaFotbal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EchipaFotbal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StatisticiJucator)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StatisticiJucator.StatisticiJucatorId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.JucatorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

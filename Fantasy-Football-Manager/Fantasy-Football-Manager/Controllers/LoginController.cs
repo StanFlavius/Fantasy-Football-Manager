@@ -18,7 +18,7 @@ namespace Fantasy_Football_Manager.Controllers
             }
             else
             {
-                return RedirectToAction("Create", "Jucatori");
+                return RedirectToAction("Index", "Jucatori2");
             }
         }
     }

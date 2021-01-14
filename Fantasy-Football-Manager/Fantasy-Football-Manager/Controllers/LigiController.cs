@@ -40,7 +40,7 @@ namespace Fantasy_Football_Manager.Controllers
                 _ligaRepo.AddLeague(liga);  
             }
 
-            return View(liga);
+            return RedirectToAction("CreateTeam", "Echipe", new { idLiga = liga.LigaId });
         }
 
         public IActionResult GetLeaguesNoUser()

@@ -251,3 +251,8 @@ C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Footba
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Ligi\GetLeaderboard.cshtml.g.cs
 C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Echipe\GetTeam.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori2\Create.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori2\Delete.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori2\Details.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori2\Edit.cshtml.g.cs
+C:\Users\flavi\OneDrive\Documents\GitHub\Fantasy-Football-Manager\Fantasy-Football-Manager\Fantasy-Football-Manager\obj\Debug\netcoreapp3.1\Razor\Views\Jucatori2\Index.cshtml.g.cs

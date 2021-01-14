@@ -109,7 +109,8 @@ namespace Fantasy_Football_Manager.Data
                     leagueS.NumeLiga = liga.NumeLiga;
                     leagueS.NrCurrUseri = GetNrUsers(liga.LigaId);
                     leagueS.NrMaxUseri = liga.NrMaxUseri;
-                    leagueStats.Add(leagueS);
+                    if(GetNrUsers(liga.LigaId) < liga.NrMaxUseri)
+                        leagueStats.Add(leagueS);
                 }
 
             }
