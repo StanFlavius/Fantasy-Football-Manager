@@ -188,6 +188,7 @@ namespace Fantasy_Football_Manager.Data
         
         public async Task UpdatePlayers(string startDate, string endDate)
         {
+            Console.WriteLine(startDate + " " + endDate);
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync("https://apiv2.apifootball.com/?action=get_events&league_id=148&APIkey=abaf250928e03ae4b44f868683a80d5d25387a925ecbd272d00c121151d3b23b&from=" + startDate + "&to=" + endDate);
 

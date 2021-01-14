@@ -21,6 +21,26 @@
     </nav>
 </header>
 
+<form class="form-horizontal" action="/Jucatori/UpdateStatistics">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">YYYY-DD-MM</label>
+            <div class="col-md-4">
+                <input id="textinput" name="data" type="text" class="form-control input-md" />
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <button>Update Statistici Jucatori</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
 <p>
     <a asp-action="Create" style="color:black">Adauga Jucator</a>
 </p>
@@ -69,8 +89,8 @@
 
 @section Scripts{
     <script>
-			$(document).ready(function () {
-				$('#myTable').DataTable();//myTable is the id of the table to be displayed as dataTable
-			});
+        $(document).ready(function () {
+            $('#myTable').DataTable();//myTable is the id of the table to be displayed as dataTable
+        });
     </script>
 }

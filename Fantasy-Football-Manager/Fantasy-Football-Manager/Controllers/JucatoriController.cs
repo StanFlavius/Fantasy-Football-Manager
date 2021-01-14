@@ -54,12 +54,12 @@ namespace Fantasy_Football_Manager.Controllers
             return View();
         }
 
-         public async Task<IActionResult> UpdateStatistics()
+         public async Task<IActionResult> UpdateStatistics(string date)
          {
-
-             await _jucatorRepo.UpdatePlayers("2021-01-04", "2021-01-04");
-
-             return View();
+            //"2021-01-04"
+            Console.WriteLine(date);
+            //await _jucatorRepo.UpdatePlayers("2021-01-04", "2021-01-04");
+            return RedirectToAction("Index", "Jucatori2");
          }
         // GET: /authors/create
         
