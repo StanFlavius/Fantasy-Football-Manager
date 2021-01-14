@@ -30,7 +30,7 @@
             {
                 <tr>
                     <td>
-                        @Html.ActionLink("Nume Liga","GetLeaderboard", "Ligi", new { id = item.LigaId })
+                        @Html.ActionLink(@item.NumeLiga,"GetLeaderboard", "Ligi", new { id = item.LigaId })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NrCurrUseri)

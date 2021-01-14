@@ -1,8 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fantasy Football Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1">
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
+<h1 class="display-4" style="text-align:center"> Fantasy Football Manager - Premier League</h1>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2 class="display-8" > Invita-ti prietenii</h2>
+    <h2 class="display-8" > Formati o liga</h2>
+    <h2 class="display-8" > Creati-va echipele ideale cu jucatori din campionatul Angliei</h2>
+    <h2 class="display-8" > Concurati pe baza punctelor acumulate de acestia in meciurile lor</h2>
 </div>
